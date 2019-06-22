@@ -1,0 +1,60 @@
+{
+	"name": "simples-ws",
+	"version": "0.9.0",
+	"description": "simpleS WebSocket client for browsers",
+	"keywords": [
+		"browser",
+		"client",
+		"simples",
+		"websocket"
+	],
+	"homepage": "https://simples.js.org/",
+	"bugs": {
+		"url": "https://github.com/micnic/simples-ws/issues"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Nicu Micleușanu",
+		"email": "micnic90@gmail.com",
+		"url": "https://github.com/micnic"
+	},
+	"browser": "dist/simples-ws.min",
+	"module": "index",
+	"repository": "github:micnic/simples-ws",
+	"scripts": {
+		"build-dev": "babel index.js -o dist/simples-ws.js",
+		"build-uglify": "uglifyjs dist/simples-ws.js -o dist/simples-ws.min.js -m",
+		"build": "npm run build-dev && npm run build-uglify",
+		"prepublishOnly": "npm run build && npm test",
+		"test": "tap -b test/*.test.js",
+		"test-cov-html": "npm test -- --coverage-report=html"
+	},
+	"devDependencies": {
+		"@babel/cli": "7.x",
+		"@babel/core": "7.x",
+		"@babel/plugin-transform-modules-umd": "7.x",
+		"@babel/register": "7.x",
+		"@babel/preset-env": "7.x",
+		"eslint": "5.x",
+		"jsinspect": "0.12.x",
+		"tap": "14.x",
+		"uglify-js": "3.x"
+	},
+	"peerDependencies": {
+		"simples": "0.9.x"
+	},
+	"babel": {
+		"moduleId": "ws",
+		"presets": [
+			"@babel/preset-env"
+		],
+		"plugins": [
+			"@babel/plugin-transform-modules-umd"
+		]
+	},
+	"nyc": {
+		"require": [
+			"@babel/register"
+		]
+	}
+}
